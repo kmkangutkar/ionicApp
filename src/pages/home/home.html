@@ -11,13 +11,13 @@
     <ion-list>
 
     <ion-item>
-        <ion-label floating>String A</ion-label>
-        <ion-input type="text" [(ngModel)] = "string_a"></ion-input>
+        <ion-label floating>String One</ion-label>
+        <ion-input type="text" [(ngModel)] = "stringOne"></ion-input>
     </ion-item>
 
     <ion-item>
-        <ion-label floating>String B</ion-label>
-        <ion-input type="text" [(ngModel)] = "string_b"></ion-input>
+        <ion-label floating>String Two</ion-label>
+        <ion-input type="text" [(ngModel)] = "stringTwo"></ion-input>
     </ion-item>
 
     </ion-list>
@@ -25,10 +25,10 @@
     <ion-card text-center>
     <ion-card-header>
         Entered strings:
-        {{ string_a }}  {{ string_b }}
+        {{ stringOne }}  {{ stringTwo }}
     </ion-card-header>
     <ion-card-content>
-         {{ comparison_result }} chars in the same positions
+         {{ comparisonResult }} chars in the same positions
     </ion-card-content>
     </ion-card>
 
