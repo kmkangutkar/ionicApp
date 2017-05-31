@@ -16,12 +16,15 @@
 <ion-content padding>
 
 <ion-list inset>
-
 	<ion-item *ngFor = "let item of menuItems">
-		<b>{{ item.name }}</b>
+	<b>{{ item.name }}</b>
+		<ion-thumbnail item-left ion-button clear (click)="whenClicked(item)">
+			<img [src]= item.image >
+		</ion-thumbnail>
+		
+		<button ion-button (click)="whenClicked(item)" item-end>Rs. {{ item.price }}</button>
 		<p>{{ item.details }}</p>
-		<p>Rs. {{ item.price }}</p>
 	</ion-item>
-</ion-list>	
+</ion-list>
 
 </ion-content>
