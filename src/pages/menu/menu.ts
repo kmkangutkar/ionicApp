@@ -15,7 +15,7 @@ import { CheckoutPage } from '../checkout/checkout';
 })
 export class MenuPage {
 
-  cart: any = [];
+  cart: any =[];
   menuItems: any;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -32,6 +32,15 @@ export class MenuPage {
     console.log('ionViewDidLoad MenuPage');
   }
 
+  showAlert(alertTitle, alertMessage){
+    let alert = this.alertCtrl.create({
+        title: alertTitle,
+        subTitle: alertMessage,
+        buttons: ['OK']
+    });
+    alert.present();
+  }
+
   showConfirm(item){
   	let confirm = this.alertCtrl.create({
   		title: "Place Order?",
@@ -42,6 +51,7 @@ export class MenuPage {
   				handler: () =>{
   					console.log("Order Confirmed!");
   					this.cart.push(item);
+            this.showAlert("Confirmed!", "Added " + item.name + " to cart.");
   				}  	
   			},
   			{
@@ -63,8 +73,10 @@ export class MenuPage {
   }
 
   goToCheckout(){
-
-    let modal = this.modalCtrl.create(CheckoutPage);
+    let data = {
+      cart: this.cart
+    };
+    let modal = this.modalCtrl.create(CheckoutPage, data);
     modal.present();
 
 //  		this.navCtrl.push(CheckoutPage, this.cart);

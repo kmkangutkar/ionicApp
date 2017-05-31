@@ -20,13 +20,12 @@
 		<ion-thumbnail item-left ion-button clear (click)="whenClicked(item)">
 			<img [src]= item.image >
 		</ion-thumbnail>
-		
-		<button ion-button (click)="whenClicked(item)" item-end>Rs. {{ item.price }}</button>
+		<button ion-button (click)="whenClicked(item)" color = "dark" outline item-end>Rs. {{ item.price }}</button>
 		<p>{{ item.details }}</p>
 	</ion-item>
 </ion-list>
 <ion-item>
-   <button item-right ion-button color="dark" outline (click)="goToCheckout()">
+   <button item-right ion-button color="secondary" outline (click)="goToCheckout()">
 	   Checkout 
 	   <ion-icon name="arrow-round-forward" ></ion-icon>
    </button>

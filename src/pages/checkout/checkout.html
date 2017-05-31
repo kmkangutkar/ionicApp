@@ -16,5 +16,23 @@
 </ion-header>
 
 <ion-content padding>
-
+<b>Items in Cart:</b>
+<ion-list inset>
+	<ion-item *ngFor = "let item of cart">
+		<b>{{ item.name }}</b>
+		<ion-thumbnail item-left>
+			<img [src]= item.image >
+		</ion-thumbnail>
+		<button ion-button (click)="removeFromCart(item)" item-end color="danger">Remove</button>
+		<p>Rs. {{ item.price }}</p>
+	</ion-item>
+</ion-list>
+<ion-card text-center>
+  <ion-card-header>
+    <b>Total</b>
+  </ion-card-header>
+  <ion-card-content>
+    Rs. {{ cartTotal }}
+  </ion-card-content>
+</ion-card>
 </ion-content>
