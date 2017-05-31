@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { CheckoutPage } from '../checkout/checkout';
 
 /**
  * Generated class for the MenuPage page.
@@ -16,7 +17,10 @@ export class MenuPage {
 
   cart: any = [];
   menuItems: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public alertCtrl: AlertController, 
+    public modalCtrl: ModalController) {
   	this.menuItems = [
   		{name: "Pizza", details: "Cheese", price: "100", image: "../../assets/pictures/pizza-slice.png"},
   		{name: "Pasta", details: "Red Sauce", price: "105", image: "../../assets/pictures/pasta.jpeg"},
@@ -57,5 +61,13 @@ export class MenuPage {
   	this.showConfirm(item);
 	console.log(this.cart);
   }
+
+  goToCheckout(){
+
+    let modal = this.modalCtrl.create(CheckoutPage);
+    modal.present();
+
+//  		this.navCtrl.push(CheckoutPage, this.cart);
+     }
 
 }

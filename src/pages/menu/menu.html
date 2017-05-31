@@ -14,7 +14,6 @@
 
 
 <ion-content padding>
-
 <ion-list inset>
 	<ion-item *ngFor = "let item of menuItems">
 	<b>{{ item.name }}</b>
@@ -26,5 +25,10 @@
 		<p>{{ item.details }}</p>
 	</ion-item>
 </ion-list>
-
+<ion-item>
+   <button item-right ion-button color="dark" outline (click)="goToCheckout()">
+	   Checkout 
+	   <ion-icon name="arrow-round-forward" ></ion-icon>
+   </button>
+</ion-item>
 </ion-content>
