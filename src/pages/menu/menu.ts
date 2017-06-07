@@ -1,31 +1,32 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { CheckoutPage } from '../checkout/checkout';
+import { LoginPage } from '../login/login';
 
-/**
- * Generated class for the MenuPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
 @IonicPage()
 @Component({
   selector: 'page-menu',
   templateUrl: 'menu.html',
 })
 export class MenuPage {
-
   cart: any =[];
-  menuItems: any;
+  menuItems: FirebaseListObservable<any[]>;
+  //menuItems: any;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public alertCtrl: AlertController, 
-    public modalCtrl: ModalController) {
-  	this.menuItems = [
+    public modalCtrl: ModalController,
+    private angularFireDB: AngularFireDatabase,
+    private authService: AuthServiceProvider) {
+  	/*this.menuItems = [
   		{name: "Pizza", details: "Cheese", price: "100", image: "../../assets/pictures/pizza-slice.png"},
   		{name: "Pasta", details: "Red Sauce", price: "105", image: "../../assets/pictures/pasta.jpeg"},
   		{name: "Ice Cream", details: "Vanilla", price: "50", image: "../../assets/pictures/icecream.png"}
-  	]
+  	];*/
+    this.menuItems = angularFireDB.list('/menuItems');
   }
 
   ionViewDidLoad() {
@@ -81,5 +82,8 @@ export class MenuPage {
 
 //  		this.navCtrl.push(CheckoutPage, this.cart);
      }
-
+ signOutFromFacebook():void{
+    this.authService.signOut();
+    this.navCtrl.setRoot(LoginPage);
+  }
 }
