@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+ 
 /**
  * Generated class for the CheckoutPage page.
  *
@@ -14,13 +16,15 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class CheckoutPage {
   cart: any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  placedOrdersDB: FirebaseListObservable<any[]>;
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+              public viewCtrl: ViewController, private angFireDB: AngularFireDatabase) {
+      this.placedOrdersDB = this.angFireDB.list('/Orders');
    }
 
   ionViewDidLoad() {
   	console.log("CheckoutPage loaded Helo");
   	this.cart = this.navParams.get('cart');
-
   	console.log(this.cart);
   	this.logCart();
   }
@@ -47,12 +51,21 @@ export class CheckoutPage {
   	return sum;
   }
   removeFromCart(item){
-	for(let i = 0; i < this.cart.length; i++){
-		if(this.cart[i].name == item.name){
-			this.cart.splice(i, 1);
-			return;
-		}
-	}
+  	for(let i = 0; i < this.cart.length; i++){
+  		if(this.cart[i].name == item.name){
+  			this.cart.splice(i, 1);
+  			return;
+  		}
+  	}
   }
 
+ placeOrder(){
+   let newOrder = this.cart.slice();
+   console.log("order placed");
+   console.log(JSON.stringify(this.orders));
+   while(this.cart.length !== 0){
+      this.cart.pop();
+   }
+   this.placedOrdersDB.push(newOrder);
+ }
 }

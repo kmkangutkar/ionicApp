@@ -75,7 +75,7 @@ export class MenuPage {
 
   goToCheckout(){
     let data = {
-      cart: this.cart
+      cart: this.cart,
     };
     let modal = this.modalCtrl.create(CheckoutPage, data);
     modal.present();

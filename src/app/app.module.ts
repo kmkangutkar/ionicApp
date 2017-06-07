@@ -16,6 +16,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AlertServiceProvider } from '../providers/alert-service/alert-service';
 export const firebaseConfig = {
     apiKey: "AIzaSyDQwg1YJg5GjMfGnfbCW4HA-H5bhF5mZGg",
     authDomain: "ionicproject-b5c2d.firebaseapp.com",
@@ -54,7 +55,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireDatabaseModule,
     AuthServiceProvider,
-    AngularFireAuth
+    AngularFireAuth,
+    AlertServiceProvider
     
   ]
 })
