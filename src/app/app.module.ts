@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { MenuPage } from '../pages/menu/menu';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { LoginPage } from '../pages/login/login';
+import { OrdersPage } from '../pages/orders/orders';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 
@@ -33,7 +34,8 @@ export const firebaseConfig = {
     HomePage,
     MenuPage,
     CheckoutPage,
-    LoginPage
+    LoginPage,
+    OrdersPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ export const firebaseConfig = {
     HomePage,
     MenuPage,
     CheckoutPage,
-    LoginPage
+    LoginPage, 
+    OrdersPage
   ],
   providers: [
     StatusBar,

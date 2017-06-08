@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-
+import { OrdersPage } from '../orders/orders';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
  
 /**
@@ -59,13 +59,39 @@ export class CheckoutPage {
   	}
   }
 
+
+ viewOrders(){
+   this.navCtrl.push(OrdersPage);
+ }
  placeOrder(){
+   let currTime: any = new Date();
+   let timeString = "" + currTime.getDate() + "/" 
+                 + currTime.getMonth() + '/' 
+                 + currTime.getFullYear() + " -- "
+                 + currTime.getHours() + ":"
+  let temp = currTime.getMinutes();
+  if (temp < 10){
+    timeString += "0";
+  } 
+  timeString += temp + ":"
+  temp = currTime.getSeconds();
+  if(temp < 10){
+    timeString += "0";
+  }
+  timeString += temp;
+                
+
    let newOrder = this.cart.slice();
+   this.placedOrdersDB.push({
+     "data": newOrder,
+     "total": this.cartTotal,
+     "time": timeString
+   });
    console.log("order placed");
-   console.log(JSON.stringify(this.orders));
+   //console.log(JSON.stringify(this.orders));
    while(this.cart.length !== 0){
       this.cart.pop();
    }
-   this.placedOrdersDB.push(newOrder);
+
  }
 }
