@@ -10,12 +10,28 @@
     <ion-title>Menu</ion-title>
     <ion-buttons end>
     <button ion-button (click)="signOutFromFacebook()">Logout</button>
+    <button ion-button menuToggle (click)="openMenu()" icon-only><ion-icon name="menu"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
+<ion-menu [content]="mycontent">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Navigate</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content padding>
+    <ion-list> 
+      <button menuClose ion-item *ngFor="let page of pages" (click)="openPage(page)">
+      {{ page.title }}
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
 <ion-list inset>
 	<ion-item *ngFor = "let item of menuItems | async">
 	<b>{{ item.name }}</b>

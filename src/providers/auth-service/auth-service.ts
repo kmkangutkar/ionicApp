@@ -38,7 +38,7 @@ export class AuthServiceProvider {
       return this.currentUser.displayName;  	
   	}
   	else{
-  		return 'Dunno';
+  		return ' ';
   	}
   }
 }
