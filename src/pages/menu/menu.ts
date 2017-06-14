@@ -105,4 +105,15 @@ export class MenuPage {
     else
       this.navCtrl.push(page.component);
   }
+
+
+ addMenuItem(){
+   this.menuItems.push({
+     "name":"Sandwich",
+     "image": "not there",
+     "price": "40",
+     details: "Tomato"
+   });
+ }
+
 }
