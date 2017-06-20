@@ -66,7 +66,7 @@ exports.sendEmail = functions.database
 		// var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 		 
 		// var data = {
-		//   from: 'Excited User <me@samples.mailgun.org>',
+		//	"from" : "Food Menu <menu@food.com>",
 		//   to: 'komalkangutkar96@gmail.com',
 		//   subject: 'Hello',
 		//   text: 'Testing some Mailgun awesomness!'
