@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { OrdersPage } from '../orders/orders';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
- 
-/**
- * Generated class for the CheckoutPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+
+
 @IonicPage()
 @Component({
   selector: 'page-checkout',
@@ -18,7 +14,9 @@ export class CheckoutPage {
   cart: any = [];
   placedOrdersDB: FirebaseListObservable<any[]>;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-              public viewCtrl: ViewController, private angFireDB: AngularFireDatabase) {
+              public viewCtrl: ViewController, private angFireDB: AngularFireDatabase,
+              public alertCtrl: AlertController,
+              public authService: AuthServiceProvider) {
       this.placedOrdersDB = this.angFireDB.list('/Orders');
    }
 
@@ -45,8 +43,8 @@ export class CheckoutPage {
   		return 0;
   	}
   	for(let i = 0; i < this.cart.length; i++){
-		sum = sum + parseInt(this.cart[i].price);	
-	}
+		  sum = sum + parseInt(this.cart[i].price);	
+	  }
   	console.log(sum);
   	return sum;
   }
@@ -59,10 +57,28 @@ export class CheckoutPage {
   	}
   }
 
-
  viewOrders(){
    this.navCtrl.push(OrdersPage);
  }
+
+ showAlertOrderPlaced(){ 
+    let alert = this.alertCtrl.create({
+        "title": "Order Placed",
+        buttons: [{
+            "text": "OK",
+            "handler": () => {
+                this.navCtrl.push(OrdersPage);
+            }
+        }]
+    });
+    alert.present();
+  }
+
+
+  get userName(){
+    return this.authService.displayName();
+  }
+
  placeOrder(){
    let currTime: any = new Date();
    let timeString = "" + currTime.getDate() + "/" 
@@ -85,9 +101,11 @@ export class CheckoutPage {
    this.placedOrdersDB.push({
      "data": newOrder,
      "total": this.cartTotal,
-     "time": timeString
+     "time": timeString,
+     "userName": this.userName 
    });
    console.log("order placed");
+   this.showAlertOrderPlaced();
    //console.log(JSON.stringify(this.orders));
    while(this.cart.length !== 0){
       this.cart.pop();
