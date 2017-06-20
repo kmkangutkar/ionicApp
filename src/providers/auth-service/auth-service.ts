@@ -9,7 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 @Injectable()
 export class AuthServiceProvider {
 
-  private currentUser: firebase.User;
+  public currentUser: firebase.User;
  
   constructor(private angFireAuth: AngularFireAuth) {
     console.log('Hello AuthServiceProvider Provider');

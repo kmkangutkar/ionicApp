@@ -14,10 +14,11 @@
 
 
 <ion-content padding>
-<h2>My Orders</h2>
+<h2>My Orders: 	<i>{{ userName }}</i></h2>
 <ion-list inset>
 	<ion-item *ngFor = "let order of placedOrders | async">
 	<p><b>{{ order.time }}</b></p>
+
 	<ion-list inset>
 		<ion-item *ngFor = "let item of order.data">
 			<b>{{ item.name }}</b>	Rs.{{ item.price }}

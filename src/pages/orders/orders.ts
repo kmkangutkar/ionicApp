@@ -19,6 +19,7 @@ export class OrdersPage {
   placedOrders: FirebaseListObservable<any[]>;
   constructor(public navCtrl: NavController, public navParams: NavParams, private angFireDB: AngularFireDatabase) {
   	this.placedOrders = this.angFireDB.list('/Orders');
+  	
   }
 
   ionViewDidLoad() {

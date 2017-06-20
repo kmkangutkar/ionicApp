@@ -21,7 +21,8 @@ export class LoginPage {
   signInWithFacebook():void{
   	this.authService.signInWithFacebook()
   		.then(() => this.onSignInSuccess()).then(()=>{
-  			this.navCtrl.setRoot(MenuPage);
+  			//this.navCtrl.setRoot(MenuPage);
+        console.log("Menu should load");
   		});
   }
 

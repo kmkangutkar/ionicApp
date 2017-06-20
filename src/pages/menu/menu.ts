@@ -77,7 +77,7 @@ export class MenuPage {
   whenClicked(item){
   	console.log(item.price);
   	this.showConfirm(item);
-	console.log(this.cart);
+	  console.log(this.cart);
   }
 
   goToCheckout(){
@@ -91,7 +91,7 @@ export class MenuPage {
      }
  signOutFromFacebook():void{
     this.authService.signOut();
-    this.navCtrl.setRoot(LoginPage);
+   //this.navCtrl.setRoot(LoginPage);
   }
 
   openMenu(){
